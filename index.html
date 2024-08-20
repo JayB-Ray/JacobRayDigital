@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jacob Ray - Personal Webpage</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #000;
+            color: #0f0;
+            text-align: center;
+            position: relative;
+        }
+        header {
+            padding: 20px;
+            border-bottom: 2px solid #0f0;
+        }
+        header img {
+            border-radius: 15px;
+            width: 50%;
+            max-width: 400px;
+            height: auto;
+            margin-bottom: 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+        header p {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .like-section {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            text-align: right;
+        }
+        .like-button, .dislike-button {
+            background-color: #333;
+            border: none;
+            color: #0f0;
+            padding: 10px 20px;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+        .like-button.disabled, .dislike-button.disabled {
+            background-color: #666;
+            cursor: not-allowed;
+        }
+        .tabs {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .tab-button {
+            background-color: #333;
+            border: none;
+            color: #0f0;
+            padding: 10px 20px;
+            margin: 0 5px;
+            cursor: pointer;
+            font-size: 1.1em;
+            border-radius: 5px;
+        }
+        .tab-button.active {
+            background-color: #0f0;
+            color: #000;
+        }
+        .tab-content {
+            display: none;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(0, 0, 0, 0.7);
+            margin: 10px auto;
+            max-width: 800px;
+        }
+        .tab-content.active {
+            display: block;
+        }
+        section h2 {
+            border-bottom: 1px solid #0f0;
+            padding-bottom: 10px;
+        }
+        .contact-info {
+            font-size: 1.1em;
+        }
+        footer {
+            padding: 10px;
+            border-top: 2px solid #0f0;
+        }
+        .ascii-art {
+            margin-top: 20px;
+            font-size: 1.1em;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="like-section">
+            <button id="likeButton" class="like-button">Like</button>
+            <button id="dislikeButton" class="dislike-button">Dislike</button>
+            <p>Likes: <span id="likeCount">0</span></p>
+            <p>Dislikes: <span id="dislikeCount">0</span></p>
+        </div>
+        <img src="https://tse1.mm.bing.net/th?id=OIG2.vfXBtPYoPegiSJ6nVUzd&pid=ImgGn" alt="Jacob Ray">
+        <h1>Jacob Ray</h1>
+        <p>Coding, 3D Modeling</p>
+    </header>
+
+    <div class="tabs">
+        <button class="tab-button active" onclick="showTab('about')">About Me</button>
+        <button class="tab-button" onclick="showTab('projects')">Projects</button>
+        <button class="tab-button" onclick="showTab('contact')">Contact</button>
+    </div>
+
+    <section id="about" class="tab-content active">
+        <h2>About Me</h2>
+        <p>Hello! I'm Jacob Ray, a passionate coder and 3D modeler. I enjoy creating innovative solutions and designing immersive 3D environments. Welcome to my personal webpage where you can learn more about my work and projects.</p>
+    </section>
+
+    <section id="projects" class="tab-content">
+        <h2>Projects</h2>
+        <p>Here you'll find some of the projects I've been working on:</p>
+        <ul>
+            <li>Mushroom X: An application that directs you to Nintendo game Roms, and Emulators.<br>Here's the GitHub link: <a href="https://github.com/JayB-Ray/Mushroom-X">https://github.com/JayB-Ray/Mushroom-X</a></li>
+        </ul>
+    </section>
+
+    <section id="contact" class="tab-content">
+        <h2>Contact</h2>
+        <p class="contact-info">Feel free to reach out to me via Discord: jacobybryantlol</p>
+    </section>
+
+    <footer>
+        <p>&copy; 2024 Jacob Ray. All rights reserved.</p>
+    </footer>
+
+    <div class="ascii-art">
+        <pre>
+      _             ____     ____             
+     | | __ _ _   _| __ )   |  _ \ __ _ _   _ 
+  _  | |/ _` | | | |  _ \   | |_) / _` | | | |
+ | |_| | (_| | |_| | |_) |  |  _ < (_| | |_| |
+  \___/ \__,_|\__, |____/___|_| \_\__,_|\__, |
+              |___/    |_____|          |___/ 
+        </pre>
+    </div>
+
+    <script>
+        const likeButton = document.getElementById('likeButton');
+        const dislikeButton = document.getElementById('dislikeButton');
+        let likeCount = parseInt(localStorage.getItem('likeCount')) || 0;
+        let dislikeCount = parseInt(localStorage.getItem('dislikeCount')) || 0;
+        let userChoice = localStorage.getItem('userChoice');
+
+        document.getElementById('likeCount').textContent = likeCount;
+        document.getElementById('dislikeCount').textContent = dislikeCount;
+
+        if (userChoice === 'like') {
+            likeButton.disabled = true;
+            likeButton.classList.add('disabled');
+        } else if (userChoice === 'dislike') {
+            dislikeButton.disabled = true;
+            dislikeButton.classList.add('disabled');
+        }
+
+        likeButton.addEventListener('click', () => {
+            if (userChoice === 'dislike') {
+                dislikeCount--;
+                dislikeButton.disabled = false;
+                dislikeButton.classList.remove('disabled');
+            }
+            likeCount++;
+            userChoice = 'like';
+            localStorage.setItem('userChoice', userChoice);
+            localStorage.setItem('likeCount', likeCount);
+            localStorage.setItem('dislikeCount', dislikeCount);
+            updateCounts();
+            likeButton.disabled = true;
+            likeButton.classList.add('disabled');
+            dislikeButton.disabled = false;
+            dislikeButton.classList.remove('disabled');
+        });
+
+        dislikeButton.addEventListener('click', () => {
+            if (userChoice === 'like') {
+                likeCount--;
+                likeButton.disabled = false;
+                likeButton.classList.remove('disabled');
+            }
+            dislikeCount++;
+            userChoice = 'dislike';
+            localStorage.setItem('userChoice', userChoice);
+            localStorage.setItem('likeCount', likeCount);
+            localStorage.setItem('dislikeCount', dislikeCount);
+            updateCounts();
+            dislikeButton.disabled = true;
+            dislikeButton.classList.add('disabled');
+            likeButton.disabled = false;
+            likeButton.classList.remove('disabled');
+        });
+
+        function updateCounts() {
+            document.getElementById('likeCount').textContent = likeCount;
+            document.getElementById('dislikeCount').textContent = dislikeCount;
+        }
+
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+
+            document.querySelectorAll('.tab-button').forEach(button => {
+                button.classList.remove('active');
+            });
+
+            document.getElementById(tabId).classList.add('active');
+            document.querySelector(`.tab-button[onclick="showTab('${tabId}')"]`).classList.add('active');
+        }
+    </script>
+</body>
+</html>
