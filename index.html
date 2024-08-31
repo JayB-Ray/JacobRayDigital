@@ -32,26 +32,6 @@
             margin: 0;
             font-size: 1.2em;
         }
-        .like-section {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            text-align: right;
-        }
-        .like-button, .dislike-button {
-            background-color: #333;
-            border: none;
-            color: #0f0;
-            padding: 10px 20px;
-            cursor: pointer;
-            font-size: 1em;
-            border-radius: 5px;
-            margin-left: 10px;
-        }
-        .like-button.disabled, .dislike-button.disabled {
-            background-color: #666;
-            cursor: not-allowed;
-        }
         .tabs {
             display: flex;
             justify-content: center;
@@ -101,12 +81,6 @@
 </head>
 <body>
     <header>
-        <div class="like-section">
-            <button id="likeButton" class="like-button">Like</button>
-            <button id="dislikeButton" class="dislike-button">Dislike</button>
-            <p>Likes: <span id="likeCount">0</span></p>
-            <p>Dislikes: <span id="dislikeCount">0</span></p>
-        </div>
         <img src="https://tse1.mm.bing.net/th?id=OIG2.vfXBtPYoPegiSJ6nVUzd&pid=ImgGn" alt="Jacob Ray">
         <h1>Jacob Ray</h1>
         <p>Coding, 3D Modeling</p>
@@ -115,7 +89,7 @@
     <div class="tabs">
         <button class="tab-button active" onclick="showTab('about')">About Me</button>
         <button class="tab-button" onclick="showTab('projects')">Projects</button>
-        <button class="tab-button" onclick="showTab('socials')">Socials</button> <!-- Updated button -->
+        <button class="tab-button" onclick="showTab('socials')">Socials</button>
     </div>
 
     <section id="about" class="tab-content active">
@@ -131,15 +105,15 @@
         </ul>
     </section>
 
-    <section id="socials" class="tab-content"> <!-- Updated section -->
+    <section id="socials" class="tab-content">
         <h2>Socials</h2>
         <p>Connect with me on my social platforms:</p>
-    <ul>
-        <li><a href="https://github.com/JayB-Ray" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-        <li><a href="https://discord.com/users/1230738081137692727" target="_blank" rel="noopener noreferrer">Discord</a></li>
-        <li><a href="https://huggingface.co/JayB-Ray" target="_blank" rel="noopener noreferrer">Hugging Face</a></li>
-        <!-- Add other social links as needed -->
-    </ul>
+        <ul>
+            <li><a href="https://github.com/JayB-Ray" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://discord.com/users/1230738081137692727" target="_blank" rel="noopener noreferrer">Discord</a></li>
+            <li><a href="https://huggingface.co/JayB-Ray" target="_blank" rel="noopener noreferrer">Hugging Face</a></li>
+            <!-- Add other social links as needed -->
+        </ul>
     </section>
 
     <footer>
@@ -158,64 +132,6 @@
     </div>
 
     <script>
-        const likeButton = document.getElementById('likeButton');
-        const dislikeButton = document.getElementById('dislikeButton');
-        let likeCount = parseInt(localStorage.getItem('likeCount')) || 0;
-        let dislikeCount = parseInt(localStorage.getItem('dislikeCount')) || 0;
-        let userChoice = localStorage.getItem('userChoice');
-
-        document.getElementById('likeCount').textContent = likeCount;
-        document.getElementById('dislikeCount').textContent = dislikeCount;
-
-        if (userChoice === 'like') {
-            likeButton.disabled = true;
-            likeButton.classList.add('disabled');
-        } else if (userChoice === 'dislike') {
-            dislikeButton.disabled = true;
-            dislikeButton.classList.add('disabled');
-        }
-
-        likeButton.addEventListener('click', () => {
-            if (userChoice === 'dislike') {
-                dislikeCount--;
-                dislikeButton.disabled = false;
-                dislikeButton.classList.remove('disabled');
-            }
-            likeCount++;
-            userChoice = 'like';
-            localStorage.setItem('userChoice', userChoice);
-            localStorage.setItem('likeCount', likeCount);
-            localStorage.setItem('dislikeCount', dislikeCount);
-            updateCounts();
-            likeButton.disabled = true;
-            likeButton.classList.add('disabled');
-            dislikeButton.disabled = false;
-            dislikeButton.classList.remove('disabled');
-        });
-
-        dislikeButton.addEventListener('click', () => {
-            if (userChoice === 'like') {
-                likeCount--;
-                likeButton.disabled = false;
-                likeButton.classList.remove('disabled');
-            }
-            dislikeCount++;
-            userChoice = 'dislike';
-            localStorage.setItem('userChoice', userChoice);
-            localStorage.setItem('likeCount', likeCount);
-            localStorage.setItem('dislikeCount', dislikeCount);
-            updateCounts();
-            dislikeButton.disabled = true;
-            dislikeButton.classList.add('disabled');
-            likeButton.disabled = false;
-            likeButton.classList.remove('disabled');
-        });
-
-        function updateCounts() {
-            document.getElementById('likeCount').textContent = likeCount;
-            document.getElementById('dislikeCount').textContent = dislikeCount;
-        }
-
         function showTab(tabId) {
             document.querySelectorAll('.tab-content').forEach(content => {
                 content.classList.remove('active');
