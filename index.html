@@ -7,142 +7,227 @@
     <style>
         body {
             margin: 0;
-            font-family: 'Courier New', Courier, monospace;
+            font-family: 'Arial', sans-serif;
             background-color: #000;
-            color: #0f0;
+            color: #fff;
             text-align: center;
             position: relative;
+            overflow-x: hidden;
         }
         header {
             padding: 20px;
-            border-bottom: 2px solid #0f0;
+            border-bottom: 2px solid #fff;
+            background: linear-gradient(135deg, #000, #333);
         }
         header img {
-            border-radius: 15px;
-            width: 50%;
-            max-width: 400px;
-            height: auto;
-            margin-bottom: 20px;
+            border-radius: 50%;
+            width: 150px;
+            height: 150px;
+            object-fit: cover;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        header img:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
         }
         header h1 {
-            margin: 0;
-            font-size: 2.5em;
+            margin: 10px 0;
+            font-size: 3em;
+            color: #00ff00;
+            transition: color 0.3s ease;
         }
         header p {
             margin: 0;
-            font-size: 1.2em;
+            font-size: 1.5em;
+            color: #ccc;
         }
         .tabs {
             display: flex;
             justify-content: center;
             margin-top: 20px;
+            flex-wrap: wrap;
         }
         .tab-button {
             background-color: #333;
             border: none;
-            color: #0f0;
-            padding: 10px 20px;
+            color: #fff;
+            padding: 12px 24px;
             margin: 0 5px;
             cursor: pointer;
-            font-size: 1.1em;
-            border-radius: 5px;
+            font-size: 1.2em;
+            border-radius: 25px;
+            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+        }
+        .tab-button:hover {
+            background-color: #444;
+            color: #fff;
+            transform: scale(1.05);
         }
         .tab-button.active {
-            background-color: #0f0;
+            background-color: #fff;
             color: #000;
         }
         .tab-content {
             display: none;
             padding: 20px;
-            border-radius: 10px;
+            border-radius: 15px;
             background-color: rgba(0, 0, 0, 0.7);
             margin: 10px auto;
             max-width: 800px;
+            position: relative;
+            overflow: hidden;
+            height: 0;
+            opacity: 0;
+            transition: height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
         }
         .tab-content.active {
             display: block;
+            height: auto;
+            opacity: 1;
+            padding: 20px;
+        }
+        section {
+            margin-top: 20px;
         }
         section h2 {
-            border-bottom: 1px solid #0f0;
+            margin: 0;
+            font-size: 2.5em;
+            color: #00ff00;
+            transition: color 0.3s ease;
+        }
+        section p.description {
+            margin: 0;
+            font-size: 1.2em;
+            border-bottom: 2px solid #fff;
             padding-bottom: 10px;
+            margin-bottom: 10px;
+            display: inline-block;
+            color: #ccc;
+        }
+        section p {
+            font-size: 1.1em;
+            line-height: 1.6;
         }
         .contact-info {
-            font-size: 1.1em;
+            font-size: 1.2em;
+            color: #ccc;
         }
         footer {
-            padding: 10px;
-            border-top: 2px solid #0f0;
+            padding: 20px;
+            border-top: 2px solid #fff;
+            font-size: 1em;
+            background: linear-gradient(135deg, #000, #333);
         }
-        .ascii-art {
-            margin-top: 20px;
-            font-size: 1.1em;
+        .no-bullets {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        ul.no-bullets {
+            text-align: center;
+        }
+        ul.no-bullets li {
+            display: inline-block;
+            margin: 5px;
+        }
+        ul.no-bullets a {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 15px;
+            margin: 5px;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 25px;
+            font-size: 1em;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        ul.no-bullets a:hover {
+            background-color: #444;
+            transform: scale(1.02);
         }
     </style>
 </head>
 <body>
     <header>
-        <img src="https://tse1.mm.bing.net/th?id=OIG2.vfXBtPYoPegiSJ6nVUzd&pid=ImgGn" alt="Jacob Ray">
+        <img src="https://i.ibb.co/dLzyvgs/duotone-1.jpg" alt="Jacob Ray's profile picture">
         <h1>Jacob Ray</h1>
-        <p>Coding, 3D Modeling</p>
+        <p>Coding, 3D Modeling, Game Development</p>
     </header>
 
     <div class="tabs">
-        <button class="tab-button active" onclick="showTab('about')">About Me</button>
+        <button class="tab-button active" onclick="showTab('home')">Home</button>
+        <button class="tab-button" onclick="showTab('about')">About Me</button>
         <button class="tab-button" onclick="showTab('projects')">Projects</button>
         <button class="tab-button" onclick="showTab('socials')">Socials</button>
+        <button class="tab-button" onclick="showTab('contact')">Contact</button>
     </div>
 
-    <section id="about" class="tab-content active">
+    <section id="home" class="tab-content active">
+        <h2>Welcome to My World</h2>
+        <p class="description">Explore the creative journey of Jacob Ray—a passionate coder, 3D modeler, and game developer. Dive into my world where technology meets creativity, and discover the projects that drive my curiosity and innovation.</p>
+        <p>Here, you will find insights into my work, my projects, and how you can connect with me. Each section is crafted to give you a glimpse into my world and to engage with the work that I am passionate about. Whether you're interested in coding, 3D modeling, or game development, there's something here for you!</p>
+    </section>
+
+    <section id="about" class="tab-content">
         <h2>About Me</h2>
-        <p>Hello! I'm Jacob Ray, a passionate coder and 3D modeler. I enjoy creating innovative solutions and designing immersive 3D environments. Welcome to my personal webpage where you can learn more about my work and projects.</p>
+        <p class="description">Get to know more about Jacob Ray:</p>
+        <p>Hello! I'm Jacob Ray, a dedicated coder and creative technologist with a passion for 3D modeling and game development. My journey started with a fascination for technology and has evolved into a pursuit of creating immersive experiences through coding and design.</p>
+        <p>With experience in various programming languages and 3D modeling tools, I aim to push the boundaries of what's possible in digital worlds. My skills include Python programming, 3D asset creation, and developing interactive game mechanics. I am always eager to learn new techniques and apply them to exciting projects.</p>
+        <p>In addition to my technical skills, I am also committed to sharing knowledge and collaborating with others. Whether it's through coding tutorials, collaborative projects, or community engagement, I believe in the power of collective creativity to drive innovation.</p>
     </section>
 
     <section id="projects" class="tab-content">
         <h2>Projects</h2>
-        <p>Here you'll find some of the projects I've been working on:</p>
-        <ul>
-            <li>Mushroom X: An application that directs you to Nintendo game Roms, and Emulators.<br>Here's the GitHub link: <a href="https://github.com/JayB-Ray/Mushroom-X">https://github.com/JayB-Ray/Mushroom-X</a></li>
+        <p class="description">Explore some of the projects that I have worked on:</p>
+        <ul class="no-bullets">
+            <li><strong>Mushroom X:</strong> A versatile application designed to guide users to Nintendo game ROMs and emulators. This project showcases my ability to develop user-friendly applications that streamline access to gaming resources.<br><a href="https://github.com/JayB-Ray/Mushroom-X" target="_blank" rel="noopener noreferrer">Explore Mushroom X</a></li>
         </ul>
     </section>
 
     <section id="socials" class="tab-content">
         <h2>Socials</h2>
-        <p>Connect with me on my social platforms:</p>
-        <ul>
-            <li><a href="https://github.com/JayB-Ray" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            <li><a href="https://discord.com/users/1230738081137692727" target="_blank" rel="noopener noreferrer">Discord</a></li>
-            <li><a href="https://huggingface.co/JayB-Ray" target="_blank" rel="noopener noreferrer">Hugging Face</a></li>
-            <!-- Add other social links as needed -->
+        <p class="description">Connect with me through these platforms:</p>
+        <ul class="no-bullets">
+            <li><a href="https://github.com/JayB-Ray" target="_blank" rel="noopener noreferrer">GitHub - Explore my repositories and contributions</a></li>
+            <li><a href="https://x.com/JacobRayDigital" target="_blank" rel="noopener noreferrer">Twitter - Follow me for updates and insights</a></li>
+            <li><a href="https://huggingface.co/JayB-Ray" target="_blank" rel="noopener noreferrer">Hugging Face - My AI models and work</a></li>
+            <li><a href="https://discord.com/users/1230738081137692727" target="_blank" rel="noopener noreferrer">Discord - Connect with me</a></li>
         </ul>
+    </section>
+
+    <section id="contact" class="tab-content">
+        <h2>Contact</h2>
+        <p class="description">Feel free to reach out:</p>
+        <p class="contact-info">Email: <a href="mailto:jaybdgtl@gmail.com">jaybdgtl@gmail.com</a></p>
+        <p class="contact-info">Twitter: <a href="https://x.com/JacobRayDigital" target="_blank" rel="noopener noreferrer">Follow on Twitter</a></p>
+        <p class="contact-info">GitHub: <a href="https://github.com/JayB-Ray" target="_blank" rel="noopener noreferrer">Check out my GitHub</a></p>
+        <p class="contact-info">Discord: <a href="https://discord.com/users/1230738081137692727" target="_blank" rel="noopener noreferrer">Connect on Discord</a></p>
     </section>
 
     <footer>
         <p>&copy; 2024 Jacob Ray. All rights reserved.</p>
     </footer>
 
-    <div class="ascii-art">
-        <pre>
-      _             ____     ____             
-     | | __ _ _   _| __ )   |  _ \ __ _ _   _ 
-  _  | |/ _` | | | |  _ \   | |_) / _` | | | |
- | |_| | (_| | |_| | |_) |  |  _ < (_| | |_| |
-  \___/ \__,_|\__, |____/___|_| \_\__,_|\__, |
-              |___/    |_____|          |___/ 
-        </pre>
-    </div>
-
     <script>
         function showTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
+            const tabs = document.querySelectorAll('.tab-content');
+            const buttons = document.querySelectorAll('.tab-button');
+
+            tabs.forEach(tab => {
+                if (tab.id === tabId) {
+                    tab.classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                }
             });
 
-            document.querySelectorAll('.tab-button').forEach(button => {
-                button.classList.remove('active');
+            buttons.forEach(button => {
+                if (button.textContent.toLowerCase().includes(tabId)) {
+                    button.classList.add('active');
+                } else {
+                    button.classList.remove('active');
+                }
             });
-
-            document.getElementById(tabId).classList.add('active');
-            document.querySelector(`.tab-button[onclick="showTab('${tabId}')"]`).classList.add('active');
         }
     </script>
 </body>
