@@ -55,6 +55,7 @@
             justify-content: center;
             margin-top: 10px;
             gap: 10px;
+            flex-wrap: wrap;
         }
         .tab-button {
             background-color: #333;
@@ -148,6 +149,53 @@
             background-color: #00ff88;
             color: #000;
             transform: scale(1.05);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2.5em;
+            }
+            header img {
+                width: 100px;
+                height: 100px;
+            }
+            .tab-button {
+                font-size: 1em;
+                padding: 10px 20px;
+            }
+            section h2 {
+                font-size: 2.2em;
+            }
+            section p.description {
+                font-size: 1.1em;
+            }
+            footer {
+                font-size: 0.9em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 2em;
+            }
+            header img {
+                width: 80px;
+                height: 80px;
+            }
+            .tab-button {
+                font-size: 0.9em;
+                padding: 8px 16px;
+            }
+            section h2 {
+                font-size: 1.8em;
+            }
+            section p.description {
+                font-size: 1em;
+            }
+            .tabs {
+                flex-direction: column;
+            }
         }
     </style>
 </head>
