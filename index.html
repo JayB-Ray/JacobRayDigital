@@ -173,6 +173,16 @@
             footer {
                 font-size: 0.9em;
             }
+
+            /* Tab content visibility for mobile */
+            .tab-content {
+                padding: 20px 10px;
+                margin: 20px auto;
+                max-width: 90%;
+            }
+            .timeline {
+                max-width: 90%;
+            }
         }
 
         @media (max-width: 480px) {
@@ -195,6 +205,16 @@
             }
             .tabs {
                 flex-direction: column;
+            }
+
+            /* Smaller padding for tab contents */
+            .tab-content {
+                padding: 15px 5px;
+                margin: 15px auto;
+                max-width: 100%;
+            }
+            .timeline {
+                max-width: 100%;
             }
         }
     </style>
