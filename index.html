@@ -4,146 +4,150 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jacob Ray - Personal Webpage</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
     <style>
-        body {
+        * {
+            box-sizing: border-box;
+            padding: 0;
             margin: 0;
-            font-family: 'Arial', sans-serif;
-            background-color: #000;
-            color: #fff;
-            text-align: center;
-            position: relative;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #1A1A1A;
+            color: #F5F5F5;
+            margin: 0;
             overflow-x: hidden;
+            text-align: center;
         }
         header {
-            padding: 20px;
-            border-bottom: 2px solid #fff;
-            background: linear-gradient(135deg, #000, #333);
+            padding: 50px 20px;
+            background: linear-gradient(135deg, #0A0A0A, #222);
+            color: #fff;
+            border-bottom: 2px solid #00ff88;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
         }
         header img {
             border-radius: 50%;
             width: 150px;
             height: 150px;
             object-fit: cover;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
         header img:hover {
             transform: scale(1.1);
-            box-shadow: 0 0 15px rgba(255, 255, 255, 0.5);
+            box-shadow: 0 0 25px rgba(0, 255, 136, 0.7);
         }
         header h1 {
-            margin: 10px 0;
-            font-size: 3em;
-            color: #00ff00;
+            font-size: 3.5em;
+            margin: 15px 0;
+            color: #00ff88;
             transition: color 0.3s ease;
         }
         header p {
-            margin: 0;
-            font-size: 1.5em;
-            color: #ccc;
+            font-size: 1.3em;
+            color: #CCCCCC;
+            margin-bottom: 20px;
         }
         .tabs {
             display: flex;
             justify-content: center;
-            margin-top: 20px;
-            flex-wrap: wrap;
+            margin-top: 10px;
+            gap: 10px;
         }
         .tab-button {
             background-color: #333;
-            border: none;
+            border: 2px solid transparent;
             color: #fff;
-            padding: 12px 24px;
-            margin: 0 5px;
+            padding: 12px 25px;
             cursor: pointer;
             font-size: 1.2em;
-            border-radius: 25px;
-            transition: background-color 0.3s, color 0.3s, transform 0.3s;
+            border-radius: 30px;
+            transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
         }
-        .tab-button:hover {
-            background-color: #444;
-            color: #fff;
-            transform: scale(1.05);
-        }
-        .tab-button.active {
-            background-color: #fff;
+        .tab-button:hover, .tab-button.active {
+            background-color: #00ff88;
             color: #000;
+            transform: scale(1.05);
+            border-color: #00ff88;
         }
         .tab-content {
             display: none;
-            padding: 20px;
-            border-radius: 15px;
-            background-color: rgba(0, 0, 0, 0.7);
-            margin: 10px auto;
-            max-width: 800px;
-            position: relative;
-            overflow: hidden;
-            height: 0;
+            padding: 40px 20px;
+            margin: 30px auto;
+            max-width: 900px;
+            background-color: rgba(10, 10, 10, 0.8);
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
             opacity: 0;
-            transition: height 0.3s ease, opacity 0.3s ease, padding 0.3s ease;
+            transform: translateY(50px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
         }
         .tab-content.active {
             display: block;
-            height: auto;
             opacity: 1;
-            padding: 20px;
-        }
-        section {
-            margin-top: 20px;
+            transform: translateY(0);
         }
         section h2 {
-            margin: 0;
-            font-size: 2.5em;
-            color: #00ff00;
-            transition: color 0.3s ease;
+            font-size: 2.8em;
+            color: #00ff88;
+            margin-bottom: 10px;
         }
         section p.description {
-            margin: 0;
-            font-size: 1.2em;
-            border-bottom: 2px solid #fff;
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-            display: inline-block;
-            color: #ccc;
+            font-size: 1.3em;
+            margin-bottom: 20px;
+            color: #bbb;
         }
-        section p {
-            font-size: 1.1em;
-            line-height: 1.6;
+
+        /* Timeline */
+        .timeline {
+            text-align: left;
+            margin: 40px 0;
+            max-width: 700px;
+            margin: 0 auto;
         }
-        .contact-info {
-            font-size: 1.2em;
-            color: #ccc;
+        .timeline-item {
+            padding: 15px;
+            border-left: 4px solid #00ff88;
+            margin-bottom: 20px;
         }
+        .timeline-item h3 {
+            margin-bottom: 5px;
+        }
+
         footer {
             padding: 20px;
-            border-top: 2px solid #fff;
+            margin-top: 50px;
+            border-top: 2px solid #00ff88;
             font-size: 1em;
-            background: linear-gradient(135deg, #000, #333);
+            background: linear-gradient(135deg, #0A0A0A, #222);
+            color: #999;
         }
         .no-bullets {
             list-style-type: none;
             padding: 0;
             margin: 0;
         }
-        ul.no-bullets {
-            text-align: center;
-        }
         ul.no-bullets li {
             display: inline-block;
-            margin: 5px;
+            margin: 10px;
         }
         ul.no-bullets a {
             background-color: #333;
             color: #fff;
-            padding: 10px 15px;
+            padding: 12px 20px;
             margin: 5px;
             text-decoration: none;
             display: inline-block;
-            border-radius: 25px;
-            font-size: 1em;
+            border-radius: 30px;
+            font-size: 1.1em;
             transition: background-color 0.3s, transform 0.3s;
         }
         ul.no-bullets a:hover {
-            background-color: #444;
-            transform: scale(1.02);
+            background-color: #00ff88;
+            color: #000;
+            transform: scale(1.05);
         }
     </style>
 </head>
@@ -152,46 +156,58 @@
         <img src="https://i.ibb.co/dLzyvgs/duotone-1.jpg" alt="Jacob Ray's profile picture">
         <h1>Jacob Ray</h1>
         <p>Coding, 3D Modeling, Game Development</p>
+        <div class="tabs">
+            <button class="tab-button active" onclick="showTab('home')">Home</button>
+            <button class="tab-button" onclick="showTab('about')">About Me</button>
+            <button class="tab-button" onclick="showTab('projects')">Projects</button>
+            <button class="tab-button" onclick="showTab('timeline')">Timeline</button>
+            <button class="tab-button" onclick="showTab('socials')">Socials</button>
+            <button class="tab-button" onclick="showTab('contact')">Contact</button>
+        </div>
     </header>
-
-    <div class="tabs">
-        <button class="tab-button active" onclick="showTab('home')">Home</button>
-        <button class="tab-button" onclick="showTab('about')">About Me</button>
-        <button class="tab-button" onclick="showTab('projects')">Projects</button>
-        <button class="tab-button" onclick="showTab('socials')">Socials</button>
-        <button class="tab-button" onclick="showTab('contact')">Contact</button>
-    </div>
 
     <section id="home" class="tab-content active">
         <h2>Welcome to My World</h2>
-        <p class="description">Explore the creative journey of Jacob Ray—a passionate coder, 3D modeler, and game developer. Dive into my world where technology meets creativity, and discover the projects that drive my curiosity and innovation.</p>
-        <p>Here, you will find insights into my work, my projects, and how you can connect with me. Each section is crafted to give you a glimpse into my world and to engage with the work that I am passionate about. Whether you're interested in coding, 3D modeling, or game development, there's something here for you!</p>
+        <p class="description">Explore the creative journey of Jacob Ray—a passionate coder, 3D modeler, and game developer.</p>
+        <p>Here, you will find insights into my work, my projects, and how you can connect with me. Whether you're interested in coding, 3D modeling, or game development, there's something here for you!</p>
     </section>
 
     <section id="about" class="tab-content">
         <h2>About Me</h2>
         <p class="description">Get to know more about Jacob Ray:</p>
-        <p>Hello! I'm Jacob Ray, a dedicated coder and creative technologist with a passion for 3D modeling and game development. My journey started with a fascination for technology and has evolved into a pursuit of creating immersive experiences through coding and design.</p>
-        <p>With experience in various programming languages and 3D modeling tools, I aim to push the boundaries of what's possible in digital worlds. My skills include Python programming, 3D asset creation, and developing interactive game mechanics. I am always eager to learn new techniques and apply them to exciting projects.</p>
-        <p>In addition to my technical skills, I am also committed to sharing knowledge and collaborating with others. Whether it's through coding tutorials, collaborative projects, or community engagement, I believe in the power of collective creativity to drive innovation.</p>
+        <p>Hello! I'm Jacob Ray, a coder and creative technologist with a passion for 3D modeling and game development. My skills include Python, 3D asset creation, and interactive game mechanics.</p>
     </section>
 
     <section id="projects" class="tab-content">
         <h2>Projects</h2>
         <p class="description">Explore some of the projects that I have worked on:</p>
         <ul class="no-bullets">
-            <li><strong>Mushroom X:</strong> A versatile application designed to guide users to Nintendo game ROMs and emulators. This project showcases my ability to develop user-friendly applications that streamline access to gaming resources.<br><a href="https://github.com/JayB-Ray/Mushroom-X" target="_blank" rel="noopener noreferrer">Explore Mushroom X</a></li>
+            <li><strong>Mushroom X (2024):</strong> A versatile app designed for guiding users to Nintendo ROMs and emulators.<br><a href="https://github.com/JayB-Ray/Mushroom-X" target="_blank" rel="noopener noreferrer">Explore Mushroom X</a></li>
         </ul>
+    </section>
+
+    <section id="timeline" class="tab-content">
+        <h2>Timeline</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h3>2022 - Started my coding journey</h3>
+                <p>Began learning Python and exploring the world of 3D modeling.</p>
+            </div>
+            <div class="timeline-item">
+                <h3>2024 - Launched Mushroom X</h3>
+                <p>Developed and released Mushroom X, a ROM and emulator guide app for Nintendo enthusiasts.</p>
+            </div>
+        </div>
     </section>
 
     <section id="socials" class="tab-content">
         <h2>Socials</h2>
         <p class="description">Connect with me through these platforms:</p>
         <ul class="no-bullets">
-            <li><a href="https://github.com/JayB-Ray" target="_blank" rel="noopener noreferrer">GitHub - Explore my repositories and contributions</a></li>
-            <li><a href="https://x.com/JacobRayDigital" target="_blank" rel="noopener noreferrer">Twitter - Follow me for updates and insights</a></li>
-            <li><a href="https://huggingface.co/JayB-Ray" target="_blank" rel="noopener noreferrer">Hugging Face - My AI models and work</a></li>
-            <li><a href="https://discord.com/users/1230738081137692727" target="_blank" rel="noopener noreferrer">Discord - Connect with me</a></li>
+            <li><a href="https://github.com/JayB-Ray" target="_blank" rel="noopener noreferrer">GitHub</a></li>
+            <li><a href="https://x.com/JacobRayDigital" target="_blank" rel="noopener noreferrer">Twitter</a></li>
+            <li><a href="https://huggingface.co/JayB-Ray" target="_blank" rel="noopener noreferrer">Hugging Face</a></li>
+            <li><a href="https://discord.com/users/1230738081137692727" target="_blank" rel="noopener noreferrer">Discord</a></li>
         </ul>
     </section>
 
@@ -199,9 +215,6 @@
         <h2>Contact</h2>
         <p class="description">Feel free to reach out:</p>
         <p class="contact-info">Email: <a href="mailto:jaybdgtl@gmail.com">jaybdgtl@gmail.com</a></p>
-        <p class="contact-info">Twitter: <a href="https://x.com/JacobRayDigital" target="_blank" rel="noopener noreferrer">Follow on Twitter</a></p>
-        <p class="contact-info">GitHub: <a href="https://github.com/JayB-Ray" target="_blank" rel="noopener noreferrer">Check out my GitHub</a></p>
-        <p class="contact-info">Discord: <a href="https://discord.com/users/1230738081137692727" target="_blank" rel="noopener noreferrer">Connect on Discord</a></p>
     </section>
 
     <footer>
@@ -214,20 +227,16 @@
             const buttons = document.querySelectorAll('.tab-button');
 
             tabs.forEach(tab => {
-                if (tab.id === tabId) {
-                    tab.classList.add('active');
-                } else {
-                    tab.classList.remove('active');
-                }
+                tab.classList.remove('active');
             });
 
+            document.getElementById(tabId).classList.add('active');
+
             buttons.forEach(button => {
-                if (button.textContent.toLowerCase().includes(tabId)) {
-                    button.classList.add('active');
-                } else {
-                    button.classList.remove('active');
-                }
+                button.classList.remove('active');
             });
+
+            document.querySelector(`.tab-button[onclick="showTab('${tabId}')"]`).classList.add('active');
         }
     </script>
 </body>
