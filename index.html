@@ -13,25 +13,39 @@
         }
         body {
             font-family: 'Poppins', sans-serif;
-            background-color: #1A1A1A;
             color: #F5F5F5;
             margin: 0;
             overflow-x: hidden;
             text-align: center;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
+        #particles-js {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-color: #1A1A1A;
+            background-size: cover;
+            background-position: 50% 50%;
+            z-index: 0;
+        }
+
+        /* Header and Page Elements */
         header {
-            padding: 50px 20px;
-            background: linear-gradient(135deg, #0A0A0A, #222);
+            padding: 20px 20px;
             color: #fff;
             border-bottom: 2px solid #00ff88;
             position: sticky;
             top: 0;
             z-index: 1000;
+            background: none;
         }
         header img {
             border-radius: 50%;
-            width: 150px;
-            height: 150px;
+            width: 120px;
+            height: 120px;
             object-fit: cover;
             transition: transform 0.5s ease, box-shadow 0.5s ease;
         }
@@ -40,30 +54,30 @@
             box-shadow: 0 0 25px rgba(0, 255, 136, 0.7);
         }
         header h1 {
-            font-size: 3.5em;
-            margin: 15px 0;
+            font-size: 3em;
+            margin: 10px 0;
             color: #00ff88;
             transition: color 0.3s ease;
         }
         header p {
-            font-size: 1.3em;
+            font-size: 1.4em;
             color: #CCCCCC;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
         }
         .tabs {
             display: flex;
             justify-content: center;
             margin-top: 10px;
-            gap: 10px;
+            gap: 15px;
             flex-wrap: wrap;
         }
         .tab-button {
             background-color: #333;
             border: 2px solid transparent;
             color: #fff;
-            padding: 12px 25px;
+            padding: 12px 30px;
             cursor: pointer;
-            font-size: 1.2em;
+            font-size: 1.1em;
             border-radius: 30px;
             transition: background-color 0.3s ease, transform 0.3s ease, border-color 0.3s ease;
         }
@@ -76,32 +90,52 @@
         .tab-content {
             display: none;
             padding: 40px 20px;
-            margin: 30px auto;
-            max-width: 900px;
+            margin: 20px auto;
+            max-width: 75%;
             background-color: rgba(10, 10, 10, 0.8);
             border-radius: 20px;
             box-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            z-index: 10;
+            position: relative;
             opacity: 0;
             transform: translateY(50px);
             transition: opacity 0.5s ease, transform 0.5s ease;
+            font-size: 1.15em;
         }
         .tab-content.active {
             display: block;
             opacity: 1;
             transform: translateY(0);
         }
-        section h2 {
-            font-size: 2.8em;
-            color: #00ff88;
-            margin-bottom: 10px;
+
+        /* Cool separator element */
+        .separator {
+            margin: 40px 0;
+            height: 2px;
+            background-color: #00ff88;
+            position: relative;
+            overflow: hidden;
         }
-        section p.description {
-            font-size: 1.3em;
-            margin-bottom: 20px;
-            color: #bbb;
+        .separator::after {
+            content: '';
+            position: absolute;
+            width: 100px;
+            height: 100%;
+            top: 0;
+            left: -100px;
+            background-color: #00ff88;
+            animation: slide 2s infinite;
+        }
+        @keyframes slide {
+            0% {
+                left: -100px;
+            }
+            100% {
+                left: 100%;
+            }
         }
 
-        /* Timeline */
+        /* Timeline with green bar on the left */
         .timeline {
             text-align: left;
             margin: 40px 0;
@@ -116,33 +150,29 @@
         .timeline-item h3 {
             margin-bottom: 5px;
         }
-
-        footer {
-            padding: 20px;
-            margin-top: 50px;
-            border-top: 2px solid #00ff88;
-            font-size: 1em;
-            background: linear-gradient(135deg, #0A0A0A, #222);
-            color: #999;
+        .timeline-item p {
+            color: #bbb;
         }
+
         .no-bullets {
             list-style-type: none;
             padding: 0;
-            margin: 0;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 10px;
         }
-        ul.no-bullets li {
-            display: inline-block;
-            margin: 10px;
-        }
+
         ul.no-bullets a {
             background-color: #333;
             color: #fff;
-            padding: 12px 20px;
+            padding: 10px 15px;
             margin: 5px;
             text-decoration: none;
             display: inline-block;
             border-radius: 30px;
-            font-size: 1.1em;
+            font-size: 0.9em;
             transition: background-color 0.3s, transform 0.3s;
         }
         ul.no-bullets a:hover {
@@ -151,7 +181,20 @@
             transform: scale(1.05);
         }
 
-        /* Responsive adjustments */
+        footer {
+            padding: 20px;
+            margin-top: auto;
+            border-top: 2px solid #00ff88;
+            font-size: 1em;
+            background: linear-gradient(135deg, #0A0A0A, #222);
+            color: #999;
+            z-index: 10;
+        }
+        footer p {
+            margin: 0;
+            color: #00ff88;
+        }
+
         @media (max-width: 768px) {
             header h1 {
                 font-size: 2.5em;
@@ -162,30 +205,16 @@
             }
             .tab-button {
                 font-size: 1em;
-                padding: 10px 20px;
+                padding: 10px 25px;
             }
-            section h2 {
-                font-size: 2.2em;
-            }
-            section p.description {
-                font-size: 1.1em;
-            }
-            footer {
-                font-size: 0.9em;
-            }
-
-            /* Tab content visibility for mobile */
             .tab-content {
-                padding: 20px 10px;
-                margin: 20px auto;
-                max-width: 90%;
-            }
-            .timeline {
-                max-width: 90%;
+                max-width: 85%;
             }
         }
-
         @media (max-width: 480px) {
+            header {
+                padding: 20px 10px;
+            }
             header h1 {
                 font-size: 2em;
             }
@@ -194,34 +223,16 @@
                 height: 80px;
             }
             .tab-button {
-                font-size: 0.9em;
-                padding: 8px 16px;
-            }
-            section h2 {
-                font-size: 1.8em;
-            }
-            section p.description {
-                font-size: 1em;
-            }
-            .tabs {
-                flex-direction: column;
-            }
-
-            /* Smaller padding for tab contents */
-            .tab-content {
-                padding: 15px 5px;
-                margin: 15px auto;
-                max-width: 100%;
-            }
-            .timeline {
-                max-width: 100%;
+                padding: 8px 20px;
             }
         }
     </style>
 </head>
 <body>
+    <div id="particles-js"></div>
+
     <header>
-        <img src="https://i.ibb.co/dLzyvgs/duotone-1.jpg" alt="Jacob Ray's profile picture">
+        <img src="https://github.com/JayB-Ray/JacobRayDigital/blob/main/headerimage.jpg?raw=true" alt="Jacob Ray's profile picture">
         <h1>Jacob Ray</h1>
         <p>Coding, 3D Modeling, Game Development</p>
         <div class="tabs">
@@ -237,13 +248,17 @@
     <section id="home" class="tab-content active">
         <h2>Welcome to My World</h2>
         <p class="description">Explore the creative journey of Jacob Ray—a passionate coder, 3D modeler, and game developer.</p>
-        <p>Here, you will find insights into my work, my projects, and how you can connect with me. Whether you're interested in coding, 3D modeling, or game development, there's something here for you!</p>
+        <p>I specialize in creating interactive experiences and solving technical problems through innovative programming. Whether it's 3D modeling or Python coding, I enjoy turning ideas into reality. Stay tuned as I continue to work on exciting projects and share my journey.</p>
+        <div class="separator"></div>
+        <p>From learning basic programming in 2022 to creating advanced projects in 2024, I’ve continually strived to improve my skills and dive deeper into technology. My interest spans from coding games to working on artificial intelligence. There's no limit to what we can create together!</p>
     </section>
 
     <section id="about" class="tab-content">
         <h2>About Me</h2>
         <p class="description">Get to know more about Jacob Ray:</p>
-        <p>Hello! I'm Jacob Ray, a coder and creative technologist with a passion for 3D modeling and game development. My skills include Python, 3D asset creation, and interactive game mechanics.</p>
+        <p>Hello! I'm Jacob Ray, a coder and creative technologist with a passion for 3D modeling and game development. I started coding in 2022, and ever since then, I've been working on expanding my skills and knowledge in various fields, including game AI, self-evolving characters, and automation tools.</p>
+        <div class="separator"></div>
+        <p>When I'm not coding or working on 3D models, I enjoy experimenting with new programming languages and creating my own tools. My journey continues as I push the boundaries of what's possible in the world of technology.</p>
     </section>
 
     <section id="projects" class="tab-content">
@@ -289,7 +304,115 @@
         <p>&copy; 2024 Jacob Ray. All rights reserved.</p>
     </footer>
 
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
     <script>
+        particlesJS("particles-js", {
+            "particles": {
+                "number": {
+                    "value": 60, /* Increased the number of particles */
+                    "density": {
+                        "enable": true,
+                        "value_area": 800
+                    }
+                },
+                "color": {
+                    "value": "#00ff88"
+                },
+                "shape": {
+                    "type": "circle",
+                    "stroke": {
+                        "width": 0,
+                        "color": "#000000"
+                    },
+                    "polygon": {
+                        "nb_sides": 5
+                    }
+                },
+                "opacity": {
+                    "value": 0.6,
+                    "random": false,
+                    "anim": {
+                        "enable": false,
+                        "speed": 1,
+                        "opacity_min": 0.3,
+                        "sync": false
+                    }
+                },
+                "size": {
+                    "value": 5,
+                    "random": true,
+                    "anim": {
+                        "enable": false,
+                        "speed": 40,
+                        "size_min": 0.1,
+                        "sync": false
+                    }
+                },
+                "line_linked": {
+                    "enable": true,
+                    "distance": 150,
+                    "color": "#00ff88",
+                    "opacity": 0.4,
+                    "width": 2
+                },
+                "move": {
+                    "enable": true,
+                    "speed": 2,
+                    "direction": "none",
+                    "random": false,
+                    "straight": false,
+                    "out_mode": "out",
+                    "bounce": false,
+                    "attract": {
+                        "enable": false,
+                        "rotateX": 600,
+                        "rotateY": 1200
+                    }
+                }
+            },
+            "interactivity": {
+                "detect_on": "window",
+                "events": {
+                    "onhover": {
+                        "enable": true,
+                        "mode": "repulse"
+                    },
+                    "onclick": {
+                        "enable": true,
+                        "mode": "push"
+                    },
+                    "resize": true
+                },
+                "modes": {
+                    "grab": {
+                        "distance": 100,
+                        "line_linked": {
+                            "opacity": 1
+                        }
+                    },
+                    "bubble": {
+                        "distance": 100,
+                        "size": 40,
+                        "duration": 2,
+                        "opacity": 8,
+                        "speed": 3
+                    },
+                    "repulse": {
+                        "distance": 70,
+                        "duration": 0.4
+                    },
+                    "push": {
+                        "particles_nb": 4
+                    },
+                    "remove": {
+                        "particles_nb": 2
+                    }
+                }
+            },
+            "retina_detect": true
+        });
+
+        // Show the selected tab content and manage active states for buttons
         function showTab(tabId) {
             const tabs = document.querySelectorAll('.tab-content');
             const buttons = document.querySelectorAll('.tab-button');
