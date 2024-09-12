@@ -27,7 +27,6 @@
             flex-direction: column;
         }
 
-        /* Make particles fixed to prevent scrolling behavior */
         #particles-js {
             position: fixed;
             top: 0;
@@ -38,7 +37,6 @@
             z-index: -1;
         }
 
-        /* Header and Page Elements */
         header {
             padding: 20px 20px;
             color: #fff;
@@ -53,12 +51,32 @@
             width: 120px;
             height: 120px;
             object-fit: cover;
+            position: relative;
             transition: transform 0.5s ease, box-shadow 0.5s ease;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.6);
+        }
+        header img::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150%;
+            height: 150%;
+            background-color: rgba(0, 255, 136, 0.4);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            transition: width 0.3s ease, height 0.3s ease;
         }
         header img:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 25px rgba(0, 255, 136, 0.7);
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.8);
         }
+        header img:hover::before {
+            width: 180%;
+            height: 180%;
+        }
+
         header h1 {
             font-size: 3em;
             margin: 10px 0;
@@ -114,7 +132,6 @@
             transform: translateY(0);
         }
 
-        /* Cool separator element */
         .separator {
             margin: 40px 0;
             height: 2px;
@@ -141,52 +158,6 @@
             }
         }
 
-        /* Timeline with green bar on the left */
-        .timeline {
-            text-align: left;
-            margin: 40px 0;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        .timeline-item {
-            padding: 15px;
-            border-left: 4px solid #00ff88;
-            margin-bottom: 20px;
-        }
-        .timeline-item h3 {
-            margin-bottom: 5px;
-        }
-        .timeline-item p {
-            color: #bbb;
-        }
-
-        .no-bullets {
-            list-style-type: none;
-            padding: 0;
-            margin: 0 auto;
-            display: flex;
-            justify-content: center;
-            flex-wrap: wrap;
-            gap: 10px;
-        }
-
-        ul.no-bullets a {
-            background-color: #333;
-            color: #fff;
-            padding: 10px 15px;
-            margin: 5px;
-            text-decoration: none;
-            display: inline-block;
-            border-radius: 30px;
-            font-size: 0.9em;
-            transition: background-color 0.3s, transform 0.3s;
-        }
-        ul.no-bullets a:hover {
-            background-color: #00ff88;
-            color: #000;
-            transform: scale(1.05);
-        }
-
         footer {
             padding: 20px;
             margin-top: auto;
@@ -201,6 +172,82 @@
         footer p {
             margin: 0;
             color: #00ff88;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .social-links a {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 15px;
+            margin: 5px;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 30px;
+            font-size: 0.9em;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+        .social-links a:hover {
+            background-color: #00ff88;
+            color: #000;
+            transform: scale(1.05);
+        }
+
+        .curved-image {
+            border-radius: 20px;
+            box-shadow: 0 4px 15px rgba(0, 255, 136, 0.6);
+            width: 150px;
+            margin: 20px auto;
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .curved-image::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 150%;
+            height: 150%;
+            background-color: rgba(0, 255, 136, 0.4);
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+            transition: width 0.3s ease, height 0.3s ease;
+        }
+
+        .curved-image:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 255, 136, 0.8);
+        }
+
+        .curved-image:hover::before {
+            width: 180%;
+            height: 180%;
+        }
+
+        .button-link {
+            display: inline-block;
+            background-color: #00ff88;
+            color: #000;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-size: 1em;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        .button-link:hover {
+            background-color: #333;
+            color: #fff;
+            transform: scale(1.05);
         }
 
         @media (max-width: 768px) {
@@ -250,6 +297,7 @@
             <button class="tab-button" onclick="showTab('timeline')">Timeline</button>
             <button class="tab-button" onclick="showTab('socials')">Socials</button>
             <button class="tab-button" onclick="showTab('contact')">Contact</button>
+            <button class="tab-button" onclick="showTab('extronet')">ExtroNet</button>
         </div>
     </header>
 
@@ -273,7 +321,9 @@
         <h2>Projects</h2>
         <p class="description">Explore some of the projects that I have worked on:</p>
         <ul class="no-bullets">
-            <li><strong>Mushroom X (2024):</strong> A versatile app designed for guiding users to Nintendo ROMs and emulators.<br><a href="https://github.com/JayB-Ray/Mushroom-X" target="_blank" rel="noopener noreferrer">Explore Mushroom X</a></li>
+            <li><strong>Mushroom X (2024):</strong> A versatile app designed for guiding users to Nintendo ROMs and emulators.<br>
+                <a class="button-link" href="https://github.com/JayB-Ray/Mushroom-X" target="_blank" rel="noopener noreferrer">Explore Mushroom X</a>
+            </li>
         </ul>
     </section>
 
@@ -294,18 +344,28 @@
     <section id="socials" class="tab-content">
         <h2>Socials</h2>
         <p class="description">Connect with me through these platforms:</p>
-        <ul class="no-bullets">
-            <li><a href="https://github.com/JayB-Ray" target="_blank" rel="noopener noreferrer">GitHub</a></li>
-            <li><a href="https://x.com/JacobRayDigital" target="_blank" rel="noopener noreferrer">Twitter</a></li>
-            <li><a href="https://huggingface.co/JayB-Ray" target="_blank" rel="noopener noreferrer">Hugging Face</a></li>
-            <li><a href="https://discord.com/users/1230738081137692727" target="_blank" rel="noopener noreferrer">Discord</a></li>
-        </ul>
+        <div class="social-links">
+            <a href="https://github.com/JayB-Ray" target="_blank" rel="noopener noreferrer">GitHub</a>
+            <a href="https://x.com/JacobRayDigital" target="_blank" rel="noopener noreferrer">Twitter</a>
+            <a href="https://huggingface.co/JayB-Ray" target="_blank" rel="noopener noreferrer">Hugging Face</a>
+            <a href="https://discord.com/users/1230738081137692727" target="_blank" rel="noopener noreferrer">Discord</a>
+        </div>
     </section>
 
     <section id="contact" class="tab-content">
         <h2>Contact</h2>
         <p class="description">Feel free to reach out:</p>
         <p class="contact-info">Email: <a href="mailto:jaybdgtl@gmail.com">jaybdgtl@gmail.com</a></p>
+    </section>
+
+    <section id="extronet" class="tab-content">
+        <h2>ExtroNet</h2>
+        <img src="https://raw.githubusercontent.com/JayB-Ray/JacobRayDigital/main/ExtroNet%20Logo.png" alt="ExtroNet Logo" class="curved-image">
+        <p class="description">ExtroNet is a coding and community hub for technology enthusiasts. Join us on Discord to collaborate, share ideas, and learn together.</p>
+        <div class="social-links">
+            <a href="https://discord.gg/SHSYmM2n" target="_blank" rel="noopener noreferrer">Join Discord</a>
+            <a href="https://www.reddit.com/r/ExtroNet/" target="_blank" rel="noopener noreferrer">Visit Subreddit</a>
+        </div>
     </section>
 
     <footer>
@@ -317,7 +377,7 @@
         particlesJS("particles-js", {
             "particles": {
                 "number": {
-                    "value": 60, /* Increased the number of particles */
+                    "value": 60,
                     "density": {
                         "enable": true,
                         "value_area": 800
@@ -420,7 +480,6 @@
             "retina_detect": true
         });
 
-        // Show the selected tab content and manage active states for buttons
         function showTab(tabId) {
             const tabs = document.querySelectorAll('.tab-content');
             const buttons = document.querySelectorAll('.tab-button');
